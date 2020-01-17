@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PersonIcon from '@material-ui/icons/Person';
 import Button from '@material-ui/core/Button';
 import './HeaderAdmin.scss';
+import { Link } from 'react-router-dom';
 
 const StyledButton = withStyles({
   root: {
@@ -25,7 +26,7 @@ export function HeaderAdmin() {
         <Typography variant='h6'>BoomPortaal</Typography>
         <div className='adminBarIcon'>
           <StyledButton>
-            My profile
+            <Link to='/'>Home</Link>
             <PersonIcon className='header-icon' />
           </StyledButton>
         </div>
