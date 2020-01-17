@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import { MainLayout } from './containers/main-layout/MainLayout';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Admin } from './containers/admin/Admin';
