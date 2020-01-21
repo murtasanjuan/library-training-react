@@ -1,23 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Book } from '../../types';
-import { getBooksList } from '../../redux/selectors';
 import { HeaderPortal } from '../../components/header-portal/HeaderPortal';
 import { Portal } from '../portal/Portal';
 import './MainLayout.scss';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Catalog } from '../catalog/Catalog';
 
-export function MainLayout(books: Book[]) {
+export function MainLayout() {
   return (
     <div className='App'>
-      <HeaderPortal />
-      <Portal />
+      <BrowserRouter >
+        <HeaderPortal />
+        <Route exact path="/" component={Portal} />
+        <Route path="/catalog" component={Catalog} />
+      </BrowserRouter>
     </div>
   );
 }
-
-const mapStateToProps = (state: any) => {
-  const books: Book[] = getBooksList(state);
-  return { books };
-};
-
-export default connect(mapStateToProps)(MainLayout);

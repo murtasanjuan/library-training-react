@@ -1,24 +1,29 @@
-import { ADD_BOOK, DELETE_BOOK } from "./actionTypes";
+import { FETCH_BOOKS_PENDING, FETCH_BOOKS_SUCCESS, FETCH_BOOKS_ERROR } from "./actionTypes";
 import { Book } from "../types";
 
-let nextBookId = 0;
 
-export const addBook = (book: Book) => ({
-  type: ADD_BOOK,
-  payload: {
-    id: ++nextBookId,
-    idBook: book.idBook,
-    title: book.title,
-    author: book.author,
-    preview: book.preview,
-    date: book.date ? book.date : new Date(),
-    content: book.content ? book.content : 'Content not found',
-  }
-});
 
-export const deleteBook = (id: string) => ({
-  type: DELETE_BOOK,
-  payload: {id}
-});
+
+
+export function fetchBooksPending() {
+    return {
+        type: FETCH_BOOKS_PENDING
+    }
+}
+
+export function fetchBooksSuccess(books: Book[]) {
+    return {
+        type: FETCH_BOOKS_SUCCESS,
+        payload: books,
+    }
+}
+
+export function fetchBooksError(error: any) {
+    return {
+        type: FETCH_BOOKS_ERROR,
+        error: error,
+    }
+}
+
 
 

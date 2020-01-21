@@ -11,4 +11,11 @@ export interface Book {
 export interface Action {
     type: string;
     payload: any;
+    error: any;
+}
+
+export interface StateBooks {
+    products: Book[];
+    error: any,
+    pending: boolean;
 }

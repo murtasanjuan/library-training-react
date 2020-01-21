@@ -1,39 +1,38 @@
-import { ADD_BOOK, DELETE_BOOK } from "../actionTypes";
-import { Action } from "../../types";
+import { FETCH_BOOKS_PENDING, FETCH_BOOKS_SUCCESS, FETCH_BOOKS_ERROR } from "../actionTypes";
+import { Action, StateBooks } from "../../types";
 
-const initialState: {allIds: string[], byIds: {[key: string]: any}} = {
-  allIds: [],
-  byIds: {}
+
+const initialState: StateBooks = {
+  error: null,
+  pending: false,
+  products: [],
 };
 
 export default function(state = initialState, action: Action) {
   switch (action.type) {
-    case ADD_BOOK: {
-      const { id, idBook, title, author, preview, date, content } = action.payload;
-      return {
-        ...state,
-        allIds: [...state.allIds, id],
-        byIds: {
-          ...state.byIds,
-          [id]: {
-            idBook,
-            title,
-            author,
-            preview,
-            date,
-            content,
-          }
-        }
-      };
-    }
-    case DELETE_BOOK: {
-      const { id } = action.payload;
-      return {
-        ...state,
-        allIds: [...state.allIds.filter((valueId) => valueId !== id)]
-      };
-    }
+    case FETCH_BOOKS_PENDING: 
+            return {
+                ...state,
+                pending: true
+            }
+        case FETCH_BOOKS_SUCCESS:
+            return {
+                ...state,
+                pending: false,
+                products: action.payload
+            }
+        case FETCH_BOOKS_ERROR:
+            return {
+                ...state,
+                pending: false,
+                error: action.error
+            }
+    
     default:
       return state;
   }
 }
+
+export const getBooks = (state: StateBooks) => state.products;
+export const getBooksPending = (state: StateBooks) => state.pending;
+export const getBooksError = (state: StateBooks) => state.error;

@@ -1,5 +1,5 @@
 import React from "react";
-import BookList from '../../components/widget-list/BookList'
+import BookList from '../../components/book-list/BookList'
 
 export function AdminContent() {
 

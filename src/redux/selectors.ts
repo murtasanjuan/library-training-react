@@ -1,12 +1,12 @@
 
 export const getBooksState = (store: any) => store.books;
 
-export const getBooksList = (store: any) =>
-  getBooksState(store) ? getBooksState(store).allIds : [];
-
-export const getBookById = (store: any, id: string) =>
-  getBooksState(store) ? { ...getBooksState(store).byIds[id], id } : {};
-
 export const getBooks = (store: any) =>
-  getBooksList(store).map((id: string) => getBookById(store, id));
+  getBooksState(store) ? getBooksState(store).products : [];
+
+export const getPending = (store: any) =>
+  getBooksState(store) ? getBooksState(store).pending : false;
+
+  export const getError = (store: any) =>
+  getBooksState(store) ? getBooksState(store).error : false;
 
